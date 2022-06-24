@@ -20,14 +20,14 @@ export const p = {
 
 
 
-// ---------> Get all users
+// ---------> Get all tasks
 router.get(p.get, async (_req: Request, res: Response) => {
     const tasks = await taskService.getAll()
     return res.status(OK).json({ tasks })
 })
 
 
-// ---------> Add one user
+// ---------> Add one task
 router.post(p.add, async (req: Request, res: Response) => {
     const { tasks } = req.body
     // Check param
@@ -40,7 +40,7 @@ router.post(p.add, async (req: Request, res: Response) => {
 })
 
 
-// ---------> Update one user
+// ---------> Update one task
 router.put(p.update, async (req: Request, res: Response) => {
     const { tasks } = req.body
     // Check param
@@ -53,7 +53,7 @@ router.put(p.update, async (req: Request, res: Response) => {
 })
 
 
-// ---------> Delete one user
+// ---------> Delete one task
 router.delete(p.delete, async (req: Request, res: Response) => {
     const { id } = req.params
     // Check param

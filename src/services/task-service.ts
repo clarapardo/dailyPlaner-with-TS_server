@@ -1,6 +1,6 @@
 import taskRepo from '@repos/task-repo'
 import { ITask } from '@models/task-model'
-import { UserNotFoundError } from '@shared/errors'
+import { TaskNotFoundError } from '@shared/errors'
 
 
 
@@ -11,18 +11,18 @@ function getAll(): Promise<ITask[]> {
 
 
 // Get one task
-function addOne(user: ITask): Promise<void> {
-    return taskRepo.add(user)
+function addOne(task: ITask): Promise<void> {
+    return taskRepo.add(task)
 }
 
 
 // Update one task
-async function updateOne(user: ITask): Promise<void> {
-    const persists = await taskRepo.persists(user.id)
+async function updateOne(task: ITask): Promise<void> {
+    const persists = await taskRepo.persists(task.id)
     if (!persists) {
-        throw new UserNotFoundError()
+        throw new TaskNotFoundError()
     }
-    return taskRepo.update(user)
+    return taskRepo.update(task)
 }
 
 
@@ -30,7 +30,7 @@ async function updateOne(user: ITask): Promise<void> {
 async function deleteOne(id: number): Promise<void> {
     const persists = await taskRepo.persists(id)
     if (!persists) {
-        throw new UserNotFoundError()
+        throw new TaskNotFoundError()
     }
     return taskRepo.delete(id)
 }

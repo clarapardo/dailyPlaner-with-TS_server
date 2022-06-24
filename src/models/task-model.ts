@@ -25,14 +25,14 @@ export enum Status {
 
 
 // Get a new Task object
-function getNew(taskName: string, deadline: object, description: string, category: Category, status: Status): ITask {
+function getNew(taskName: string, deadline: object, description: string, category: Category): ITask {
     return {
         id: -1,
         taskName,
         deadline,
         description,
         category,
-        status
+        status: Status.ToDo
     }
 }
 

@@ -1,8 +1,8 @@
 /******************************************************************************
- *                          Fetch and display users
+ *                          Fetch and display tasks
  ******************************************************************************/
 
-displayUsers()
+displayTasks()
 
 
 function displayTasks() {
@@ -11,41 +11,48 @@ function displayTasks() {
         .then((response) => {
             var allTasks = response.tasks
             // Empty the anchor
-            var allTasksAnchor = document.getElementById('all-users-anchor')
+            var allTasksAnchor = document.getElementById('all-tasks-anchor')
             allTasksAnchor.innerHTML = ''
-            // Append users to anchor
-            allTaskss.forEach((task) => {
-                allTasksAnchor.innerHTML += getUserDisplayEle(task)
+            // Append tasks to anchor
+            allTasks.forEach((task) => {
+                allTasksAnchor.innerHTML += getTaskDisplayEle(task)
             })
         })
 }
 
 
-function getUserDisplayEle(user) {
-    return `<div class="user-display-ele">
+function getTaskDisplayEle(task) {
+    return `<div class="task-display-ele">
 
         <div class="normal-view">
-            <div>Name: ${user.name}</div>
-            <div>Email: ${user.email}</div>
-            <button class="edit-user-btn" data-user-id="${user.id}">
+            <div>Task name: ${task.taskName}</div>
+            <div>Deadline: ${task.deadline}</div>
+            <div>Description: ${task.description}</div>
+            <div>Category: ${task.category}</div>
+            <div>Status: ${task.status}</div>
+            <button class="edit-task-btn" data-task-id="${task.id}">
                 Edit
             </button>
-            <button class="delete-user-btn" data-user-id="${user.id}">
+            <button class="delete-task-btn" data-task-id="${task.id}">
                 Delete
             </button>
         </div>
         
         <div class="edit-view">
             <div>
-                Name: <input class="name-edit-input" value="${user.name}">
+                Task name: <input class="taskName-edit-input" value="${task.taskName}">
             </div>
             <div>
-                Email: <input class="email-edit-input" value="${user.email}">
+                Deadline: <input class="deadline-edit-input" value="${task.deadline}">
             </div>
-            <button class="submit-edit-btn" data-user-id="${user.id}">
+            <div>
+                Description: <input class="deadline-edit-input" value="${task.description}">
+            </div>
+            
+            <button class="submit-edit-btn" data-task-id="${task.id}">
                 Submit
             </button>
-            <button class="cancel-edit-btn" data-user-id="${user.id}">
+            <button class="cancel-edit-btn" data-task-id="${task.id}">
                 Cancel
             </button>
         </div>
@@ -54,82 +61,92 @@ function getUserDisplayEle(user) {
 
 
 /******************************************************************************
- *                        Add, Edit, and Delete Users
+ *                        Add, Edit, and Delete Tasks
  ******************************************************************************/
 
 document.addEventListener('click', function (event) {
     event.preventDefault()
     var ele = event.target
-    if (ele.matches('#add-user-btn')) {
-        addUser()
-    } else if (ele.matches('.edit-user-btn')) {
+    if (ele.matches('#add-task-btn')) {
+        addTask()
+    } else if (ele.matches('.edit-task-btn')) {
         showEditView(ele.parentNode.parentNode)
     } else if (ele.matches('.cancel-edit-btn')) {
         cancelEdit(ele.parentNode.parentNode)
     } else if (ele.matches('.submit-edit-btn')) {
         submitEdit(ele)
-    } else if (ele.matches('.delete-user-btn')) {
-        deleteUser(ele)
+    } else if (ele.matches('.delete-task-btn')) {
+        deleteTask(ele)
     }
 }, false)
 
 
-function addUser() {
-    var nameInput = document.getElementById('name-input')
-    var emailInput = document.getElementById('email-input')
+function addTask() {
+    var taskNameInput = document.getElementById('taskName-input')
+    var deadlineInput = document.getElementById('deadline-input')
+    var descriptionInput = document.getElementById('description-input')
+    var categoryInput = document.getElementById('category-input')
+
     var data = {
-        user: {
-            name: nameInput.value,
-            email: emailInput.value
+        task: {
+            taskName: taskNameInput.value,
+            deadline: deadlineInput.value,
+            description: descriptionInput.value,
+            category: categoryInput.value
         },
     }
-    httpPost('/api/users/add', data)
+    httpPost('/api/tasks/add', data)
         .then(() => {
-            displayUsers()
+            displayTasks()
         })
 }
 
 
-function showEditView(userEle) {
-    var normalView = userEle.getElementsByClassName('normal-view')[0]
-    var editView = userEle.getElementsByClassName('edit-view')[0]
+function showEditView(taskEle) {
+    var normalView = taskEle.getElementsByClassName('normal-view')[0]
+    var editView = taskEle.getElementsByClassName('edit-view')[0]
     normalView.style.display = 'none'
     editView.style.display = 'block'
 }
 
 
-function cancelEdit(userEle) {
-    var normalView = userEle.getElementsByClassName('normal-view')[0]
-    var editView = userEle.getElementsByClassName('edit-view')[0]
+function cancelEdit(taskEle) {
+    var normalView = taskEle.getElementsByClassName('normal-view')[0]
+    var editView = taskEle.getElementsByClassName('edit-view')[0]
     normalView.style.display = 'block'
     editView.style.display = 'none'
 }
 
 
 function submitEdit(ele) {
-    var userEle = ele.parentNode.parentNode
-    var nameInput = userEle.getElementsByClassName('name-edit-input')[0]
-    var emailInput = userEle.getElementsByClassName('email-edit-input')[0]
-    var id = ele.getAttribute('data-user-id')
+    var taskEle = ele.parentNode.parentNode
+    var taskNameInput = taskEle.getElementsByClassName('taskName-edit-input')[0]
+    var deadlineInput = taskEle.getElementsByClassName('deadline-edit-input')[0]
+    var descriptionInput = taskEle.getElementsByClassName('description-edit-input')[0]
+    var categoryInput = taskEle.getElementsByClassName('category-edit-input')[0]
+
+    var id = ele.getAttribute('data-task-id')
     var data = {
-        user: {
-            name: nameInput.value,
-            email: emailInput.value,
+        task: {
+            taskName: taskNameInput.value,
+            deadline: deadlineInput.value,
+            description: descriptionInput.value,
+            category: categoryInput.value,
             id: Number(id),
         },
     }
-    httpPut('/api/users/update', data)
+    httpPut('/api/tasks/update', data)
         .then(() => {
-            displayUsers()
+            displayTasks()
         })
 }
 
 
-function deleteUser(ele) {
-    var id = ele.getAttribute('data-user-id')
-    httpDelete('/api/users/delete/' + id)
+function deleteTask(ele) {
+    var id = ele.getAttribute('data-task-id')
+    httpDelete('/api/tasks/delete/' + id)
         .then(() => {
-            displayUsers()
+            displayTasks()
         })
 }
 
@@ -166,6 +183,7 @@ function getOptions(verb, data) {
     if (data) {
         options.body = JSON.stringify(data)
     }
+    console.log('--------->', options)
     return options
 }
 

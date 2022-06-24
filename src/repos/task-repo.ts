@@ -59,9 +59,9 @@ async function update(task: ITask): Promise<void> {
 // Delete one task
 async function deleteOne(id: number): Promise<void> {
     const db = await orm.openDb()
-    for (let i = 0; i < db.users.length; i++) {
-        if (db.users[i].id === id) {
-            db.users.splice(i, 1)
+    for (let i = 0; i < db.tasks.length; i++) {
+        if (db.tasks[i].id === id) {
+            db.tasks.splice(i, 1)
             return orm.saveDb(db)
         }
     }
