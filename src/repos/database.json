@@ -1,11 +1,19 @@
 {
     "tasks": [
         {
-            "taskName": "Gordan Freeman",
-            "deadline": "",
-            "description": "$2b$12$1mE2OI9hMS/rgH9Mi0s85OM2V5gzm7aF3gJIWH1y0S1MqVBueyjsy",
+            "taskName": "hacer la compra",
+            "deadline": "1997-10-31T03:10",
+            "description": "soy la descripción",
             "status": "toDo",
             "category": "social",
+            "id": 906524522143
+        },
+        {
+            "taskName": "gym",
+            "deadline": "2021-11-02T08:10",
+            "description": "gym gym gym",
+            "status": "toDo",
+            "category": "workout",
             "id": 906524522143
         }
     ]

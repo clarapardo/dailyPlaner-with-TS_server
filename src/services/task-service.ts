@@ -12,6 +12,7 @@ function getAll(): Promise<ITask[]> {
 
 // Get one task
 function addOne(task: ITask): Promise<void> {
+    console.log("AQUÍ AÑADO UNA", task)
     return taskRepo.add(task)
 }
 
