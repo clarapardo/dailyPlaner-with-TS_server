@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import taskRouter from './task-router'
+import router from './task-router'
 
 
 const baseRouter = Router()
 
-baseRouter.use('/tasks', taskRouter)
+baseRouter.use('/tasks', router)
 
 
 export default baseRouter

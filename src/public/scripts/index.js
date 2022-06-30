@@ -9,7 +9,6 @@ function displayTasks() {
     httpGet('/api/tasks/all')
         .then(response => response.json())
         .then((response) => {
-            console.log("Esto es lo que recibo del JSON", response)
             var allTasks = response.tasks
             // Empty the anchor
             var allTasksAnchor = document.getElementById('all-tasks-anchor')
@@ -75,10 +74,8 @@ document.addEventListener('click', function (event) {
     event.preventDefault()
     var ele = event.target
 
-    console.log('----soy el ele del addEventListener----', ele)
 
     if (ele.matches('#add-task-btn')) {
-        console.log('entro aquí :)')
         addTask()
     } else if (ele.matches('.edit-task-btn')) {
         showEditView(ele.parentNode.parentNode)
@@ -103,17 +100,13 @@ function addTask() {
             taskName: taskNameInput.value,
             deadline: deadlineInput.value,
             description: descriptionInput.value,
-            category: categoryInput.value
+            category: categoryInput.value,
+            status: "toDo"
         },
     }
 
-    // console.log("Esto es el data que recojo", data)
-
     httpPost('/api/tasks/add', data)
-        .then(whatever => {
-            console.log("Soy whatever", whatever)
-            displayTasks()
-        })
+        .then(() => displayTasks())
 }
 
 
@@ -150,6 +143,7 @@ function submitEdit(ele) {
             id: Number(id),
         },
     }
+
     httpPut('/api/tasks/update', data)
         .then(() => {
             displayTasks()
@@ -172,7 +166,6 @@ function httpGet(path) {
 
 
 function httpPost(path, data) {
-    console.log('/////', path)
     return fetch(path, getOptions('POST', data))
 }
 
@@ -199,7 +192,6 @@ function getOptions(verb, data) {
     if (data) {
         options.body = JSON.stringify(data)     // Aquí se esta pasando a JSON ! FUTURO: cambiarlo para meterlo en la BBDD
     }
-    // console.log('--------->', options)
     return options
 }
 

@@ -18,7 +18,6 @@ export const p = {
     delete: '/delete/:id',
 } as const
 
-console.log("ESTOY EN EL ROUTER!!!!")
 
 // ---------> Get all tasks
 router.get(p.get, async (_req: Request, res: Response) => {
@@ -29,15 +28,14 @@ router.get(p.get, async (_req: Request, res: Response) => {
 
 // ---------> Add one task
 router.post(p.add, async (req: Request, res: Response) => {
-    const { tasks } = req.body
+    const { task } = req.body
 
-    console.log("Estos son los datos que recibo del form", tasks)
     // Check param
-    if (!tasks) {
+    if (!task) {
         throw new ParamMissingError()
     }
     // Fetch data
-    await taskService.addOne(tasks)
+    await taskService.addOne(task)
     return res.status(CREATED).end()
 })
 
