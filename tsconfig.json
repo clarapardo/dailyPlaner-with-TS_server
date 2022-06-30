@@ -90,7 +90,7 @@
   "include": [
     "src/**/*.ts",
     "spec/**/*.ts"
-  ],
+, "src/app.ts"  ],
   "exclude": [
     "src/public/"
   ]
