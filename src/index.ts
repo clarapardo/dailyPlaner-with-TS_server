@@ -34,6 +34,7 @@ import express, { Express } from "express"
 import taskRoutes from "./routes"
 
 const app: Express = express()
+require("./config")(app)
 
 app.use('/api', taskRoutes)
 

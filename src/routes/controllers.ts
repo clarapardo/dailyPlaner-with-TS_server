@@ -17,8 +17,7 @@ const allTasks = async (req: Request, res: Response): Promise<void> => {
 
 
 // -------> Add a tasks
-const addTask = async (req: Request, res: Response): Promise<void> => {
-    console.log("------", req.body)
+const addTask = async (req: Request, res: Response) => {
     try {
         const body = req.body as Pick<ITask, "taskName" | "deadline" | "description" | "category" | "status">
 
@@ -47,8 +46,6 @@ const addTask = async (req: Request, res: Response): Promise<void> => {
 const updateTask = async (req: Request, res: Response): Promise<void> => {
     try {
         const { params: { id }, body } = req
-
-        console.log('--------', req.body)
 
         const updateTask: ITask | null = await Task.findByIdAndUpdate({ _id: id }, body)
         const allTodos: ITask[] = await Task.find()

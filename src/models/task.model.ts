@@ -5,7 +5,7 @@ import { model, Schema } from 'mongoose'
 
 const taskSchema: Schema = new Schema({
     taskName: String,
-    deadline: Object,
+    deadline: Date,
     description: String,
     category: {
         type: String,

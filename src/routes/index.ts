@@ -3,12 +3,19 @@ import { allTasks, addTask, updateTask, deleteTask } from "./controllers"
 
 const router: Router = Router()
 
-router.get("/tasks", allTasks)
+export const path = {
+    get: '/all',
+    add: '/add',
+    update: '/update/:id',
+    delete: '/delete/:id',
+} as const
 
-router.post("/add-task", addTask)
 
-router.put("/edit-task/:id", updateTask)
+router.get(path.get, allTasks)
+router.post(path.add, addTask)
+router.put(path.update, updateTask)
+router.delete(path.delete, deleteTask)
 
-router.delete("/delete-task/:id", deleteTask)
+
 
 export default router
