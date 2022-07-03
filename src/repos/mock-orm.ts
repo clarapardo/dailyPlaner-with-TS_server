@@ -1,19 +1,19 @@
-import jsonfile from 'jsonfile'
+// import jsonfile from 'jsonfile'
 
-const dbFilePath = 'src/repos/database.json'
-
-
-
-// Fetch the json from the file
-function openDb(): Promise<Record<string, any>> {
-    return jsonfile.readFile(dbFilePath)
-}
+// const dbFilePath = 'src/repos/database.json'
 
 
-// Update the file
-function saveDb(db: Record<string, any>): Promise<void> {
-    return jsonfile.writeFile(dbFilePath, db)
-}
+
+// // Fetch the json from the file
+// function openDb(): Promise<Record<string, any>> {
+//     return jsonfile.readFile(dbFilePath)
+// }
 
 
-export default { openDb, saveDb } as const
+// // Update the file
+// function saveDb(db: Record<string, any>): Promise<void> {
+//     return jsonfile.writeFile(dbFilePath, db)
+// }
+
+
+// export default { openDb, saveDb } as const
