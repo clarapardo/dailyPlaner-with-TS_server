@@ -1,8 +1,8 @@
 // FOR MONGODB
 
 import { Response, Request } from "express"
-import { ITask } from "./../types/task"
-import Task from "./../models/task.model"
+import { ITask } from "../types/task"
+import Task from "../models/task.model"
 
 
 // -------> Get all tasks
