@@ -8,10 +8,11 @@ This **single page application** (SPA) project has been developed for the purpos
 #### Want to take a look? [here](https://dailyplaner.netlify.app/)
 
 <br>
+
 ---
 
 ### About *daily planer*
-It's a to-do-list platform.
+<p>It's a to-do-list platform.</p>
 It allows you to browse through the days and view the corresponding tasks - marking them as completed, or deleting them.
 
 
@@ -25,20 +26,20 @@ All the tasks are being stored in an external database: [external database](http
 
 <h4>DB task model</h4>
 
-<p>`taskName: String,
+```taskName: String,
 deadline: Date,
 description: String,
 category; { type: String, enum: ['health', 'social', 'work','workout', 'other'] },
-status: { type: String, enum: [ 'toDo', 'completed' ], default:'toDo' }`</p>
+status: { type: String, enum: [ 'toDo', 'completed' ], default:'toDo' }```
 
 <br>
 
 <h4>Testing the DB</h4>
 
-| If the app responses with ... | then the task ... |
+| RESPONSE | ACTION |
 | --- | --- |
-| ... a 200 status code | ... was stored correctly |
-| ... a 500 status code | ... was unable to be sent |
+| 200 status code | Correctly stored |
+| 500 status code | Unable to be sent |
 
 <br>
 
