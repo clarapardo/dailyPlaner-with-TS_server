@@ -7,9 +7,8 @@ This **single page application** (SPA) project has been developed for the purpos
 
 #### Want to take a look? [here](https://dailyplaner.netlify.app/)
 
-<br>
+<br><br>
 
----
 
 ### About *daily planer*
 <p>It's a to-do-list platform.</p>
@@ -17,20 +16,21 @@ It allows you to browse through the days and view the corresponding tasks - mark
 
 
 
-<br><br>
+<br><br><br>
 
---- 
+
 
 ## DB
 All the tasks are being stored in an external database: [external database](https://tasksplaner.herokuapp.com/).
 
 <h4>DB task model</h4>
 
-```taskName: String,
+```
+taskName: String,
 deadline: Date,
 description: String,
-category; { type: String, enum: ['health', 'social', 'work','workout', 'other'] },
-status: { type: String, enum: [ 'toDo', 'completed' ], default:'toDo' }```
+category; { type: String, enum: ["health", "social", "work","workout","other"] },
+status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }```
 
 <br>
 
