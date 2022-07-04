@@ -19,20 +19,19 @@ It allows you to browse through the days and view the corresponding tasks - mark
 <br><br><br>
 
 
+## SERVER ROUTES
+
+| METHOD | URL | DESCRIPTION |
+| --- | --- | --- |
+| GET | /api/all | Retrieves all the stored tasks |
+| POST | /api/add | Retrieves a task from the client and sends it to the server |
+| PUT | /api/update:id | Retrieves a task from the client and update it |
+| DELETE | /api/delete/:id | Retrieves a task from the client and deletes it
+
+<br>
 
 ## DB
 All the tasks are being stored in an external database: [external database](https://tasksplaner.herokuapp.com/).
-
-<h4>DB task model</h4>
-
-````
-taskName: String,
-deadline: Date,
-description: String,
-category; { type: String, enum: ["health", "social", "work","workout","other"] },
-status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }````
-
-<br>
 
 <h4>Testing the DB</h4>
 
@@ -43,11 +42,11 @@ status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }````
 
 <br>
 
-## SERVER ROUTES
+<h4>DB task model</h4>
 
-| METHOD | URL | DESCRIPTION |
-| --- | --- | --- |
-| GET | /api/all | Retrieves all the stored tasks |
-| POST | /api/add | Retrieves a task from the client and sends it to the server |
-| PUT | /api/update:id | Retrieves a task from the client and update it |
-| DELETE | /api/delete/:id | Retrieves a task from the client and deletes it
+````
+taskName: String,
+deadline: Date,
+description: String,
+category; { type: String, enum: ["health", "social", "work","workout","other"] },
+status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }````
