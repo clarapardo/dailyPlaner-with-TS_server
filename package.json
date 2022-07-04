@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start:dev": "nodemon",
-    "start": "nodemon"
+    "start": "nodemon index.ts"
   },
   "nodemonConfig": {
     "watch": [
