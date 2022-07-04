@@ -2,7 +2,8 @@
   "name": "server2-toDo-list",
   "version": "0.0.0",
   "scripts": {
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "start": "nodemon"
   },
   "nodemonConfig": {
     "watch": [
