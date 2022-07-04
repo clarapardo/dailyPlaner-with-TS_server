@@ -25,12 +25,12 @@ All the tasks are being stored in an external database: [external database](http
 
 <h4>DB task model</h4>
 
-```
+````
 taskName: String,
 deadline: Date,
 description: String,
 category; { type: String, enum: ["health", "social", "work","workout","other"] },
-status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }```
+status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }````
 
 <br>
 
