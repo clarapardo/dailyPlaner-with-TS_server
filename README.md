@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/clarapardo/image/upload/v1656966557/daily_planer_woj7pg.png" alt="PANG" width="200px"/>
+<img src="https://res.cloudinary.com/clarapardo/image/upload/v1656966557/daily_planer_woj7pg.png" alt="dailyPlaner" width="200px"/>
 
 
  <br>
@@ -31,14 +31,7 @@ It allows you to browse through the days and view the corresponding tasks - mark
 <br>
 
 ## DB
-All the tasks are being stored in an external database: [external database](https://tasksplaner.herokuapp.com/).
-
-<h4>Testing the DB</h4>
-
-| RESPONSE | ACTION |
-| --- | --- |
-| 200 status code | Correctly stored |
-| 500 status code | Unable to be sent |
+All the tasks are being stored in an external database: [external database](https://tasksplaner.herokuapp.com/). You can test it executing Postman. 
 
 <br>
 
@@ -49,4 +42,4 @@ taskName: String,
 deadline: Date,
 description: String,
 category; { type: String, enum: ["health", "social", "work","workout","other"] },
-status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }````
+status: { type: String, enum: [ "toDo", "completed" ], default:"toDo" }
